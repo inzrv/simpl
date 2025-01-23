@@ -103,4 +103,3 @@ let string_of_val (v : value) : string =
 (** [interp s] interprets [s] by lexing and parsing it, evaluating it, and converting the result to a string *)
 let interp_big (s : string) : string =
 	s |> parse |> eval_big empty_env |> string_of_val
-
