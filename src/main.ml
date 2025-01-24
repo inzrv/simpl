@@ -1,5 +1,19 @@
 open Ast
 
+module type StaticEnvironment = sig
+  (** [t] is the type of a static environment *)
+  type t
+
+  (** [empty] is the empty static environment *)
+  val empty : t
+
+  (** [lookup env x] gets the binding of [x] in [env]. Raises: [Failure] if [x] is not bound in [env] *)
+  val lookup : t -> string -> typ
+
+  (** [extend env x ty] is [env] extended with a binding of [x] to [ty] *)
+  val extend : t -> string -> typ -> t
+end
+
 (* [parse s] parses [s] into an AST. *)
 let parse (s : string) : expr =
   let lexbuf = Lexing.from_string s in
